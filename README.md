@@ -4,6 +4,8 @@
 
 ![Vyaana Preview](/images/readme.png)
 
+##URL : https://prathapallu.github.io/vyaana/
+
 ## 🌟 Overview
 Vyaana delivers personalized daily horoscope insights in just 60 seconds. Modern astrology meets instant clarity, providing quick, actionable guidance for your day ahead.
 
