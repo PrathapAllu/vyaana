@@ -1521,4 +1521,29 @@ nav {
   background: #E5B8F4;
   color: #2D033B;
 }
+
+/* Add these rules to handle mobile theme states */
+[data-bs-theme=dark] {
+  color-scheme: dark;
+}
+
+[data-bs-theme=light] {
+  color-scheme: light;
+}
+
+/* Fix logo visibility states */
+[data-bs-theme=dark] .logo-dark,
+[data-bs-theme=light] .logo-light {
+  display: none !important;
+}
+
+[data-bs-theme=dark] .logo-light,
+[data-bs-theme=light] .logo-dark {
+  display: block !important;
+}
+
+/* Ensure theme icons are visible on mobile */
+.theme-icon-active {
+  display: block !important;
+}
 /*# sourceMappingURL=main.css.map */

@@ -1,9 +1,44 @@
 // body preloader
 $(window).on('load', function () {
-  setTimeout(function () { // allowing 3 secs to fade out loader
-    $('.page-loader').fadeOut('slow');
-  }, 500);
+  $('.page-loader').fadeOut('slow');
 });
+
+
+// Theme switcher initialization
+document.addEventListener('DOMContentLoaded', () => {
+  const getStoredTheme = () => localStorage.getItem('theme');
+  const setStoredTheme = theme => localStorage.setItem('theme', theme);
+
+  const getPreferredTheme = () => {
+    const storedTheme = getStoredTheme();
+    if (storedTheme) {
+      return storedTheme;
+    }
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  };
+
+  const setTheme = theme => {
+    document.documentElement.setAttribute('data-bs-theme', theme);
+    const icon = document.querySelector('.theme-icon-active use');
+    const btnIcon = document.querySelector(`[data-bs-theme-value="${theme}"] .theme-icon use`);
+    const svgOfActiveBtn = btnIcon ? btnIcon.getAttribute('href') : '#circle-half';
+    
+    icon.setAttribute('href', svgOfActiveBtn);
+    setStoredTheme(theme);
+  };
+
+  // Set initial theme
+  setTheme(getPreferredTheme());
+
+  // Add event listeners to theme toggle buttons
+  document.querySelectorAll('[data-bs-theme-value]').forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const theme = toggle.getAttribute('data-bs-theme-value');
+      setTheme(theme);
+    });
+  });
+});
+
 // On Scroll Header fixed to top
 $(window).scroll(function () {
   if ($(window).scrollTop() >= 300) {
